@@ -36,23 +36,14 @@ class DashboardScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Top Project Section
               TopProjectCard(),
               SizedBox(height: 5),
-
-              // All Projects List Section
               ProjectListCard(),
               SizedBox(height: 5),
-
-              // Top Creators card
               TopCreatorsCard(),
               SizedBox(height: 5),
-
-              // Performance Graph card
               PerformanceGraphCard(),
               SizedBox(height: 5),
-
-              // Special Events Birthday & Anniversary card
               SpecialEventsCard(),
             ],
           ),
@@ -78,10 +69,7 @@ class DashboardScreen extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {},
-          icon: Icon(
-            Icons.notifications,
-            color: Colors.grey[400],
-          ),
+          icon: Icon(Icons.notifications, color: Colors.grey[400]),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
@@ -94,7 +82,6 @@ class DashboardScreen extends StatelessWidget {
   }
 }
 
-// Drawer Component
 class DashboardDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -125,9 +112,7 @@ class DashboardDrawer extends StatelessWidget {
     return ListTile(
       leading: Icon(icon),
       title: Text(title),
-      onTap: () {
-        // Navigation logic
-      },
+      onTap: () {},
     );
   }
 }
@@ -190,7 +175,6 @@ class TopProjectCard extends StatelessWidget {
   }
 }
 
-// All Projects List Section
 class ProjectListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -214,9 +198,10 @@ class ProjectListCard extends StatelessWidget {
             Text(
               'All Projects',
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white),
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.white,
+              ),
             ),
             SizedBox(height: 16),
             Column(
@@ -263,7 +248,6 @@ class ProjectListCard extends StatelessWidget {
   }
 }
 
-// Top Creators Section
 class TopCreatorsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -353,7 +337,6 @@ class TopCreatorsCard extends StatelessWidget {
   }
 }
 
-// Performance Graph Section
 class PerformanceGraphCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -387,11 +370,11 @@ class PerformanceGraphCard extends StatelessWidget {
                       FlSpot(6, 1.8),
                     ],
                     isCurved: true,
-                    color: Color(0xFF2B184D),
-                    barWidth: 3,
+                    color: Colors.deepPurple,
+                    barWidth: 4,
                     belowBarData: BarAreaData(
                       show: true,
-                      color: Colors.purple.withOpacity(0.3),
+                      color: Colors.deepPurple.withOpacity(0.3),
                     ),
                   ),
                 ],
@@ -404,7 +387,25 @@ class PerformanceGraphCard extends StatelessWidget {
   }
 }
 
-// Special Events Birthday & Anniversary Section
+class SpecialEventsApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Special Events'),
+          backgroundColor: Color(0xFF2B184D),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SpecialEventsCard(),
+        ),
+      ),
+    );
+  }
+}
+
 class SpecialEventsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -438,8 +439,11 @@ class EventCard extends StatelessWidget {
   final int count;
   final List<String> peopleImages;
 
-  EventCard(
-      {required this.title, required this.count, required this.peopleImages});
+  EventCard({
+    required this.title,
+    required this.count,
+    required this.peopleImages,
+  });
 
   @override
   Widget build(BuildContext context) {
