@@ -1,13 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-
-// Main Application Entry
 void main() {
   runApp(DashboardApp());
 }
 
-// Global Theme Configuration
 class DashboardApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,7 +24,6 @@ class DashboardApp extends StatelessWidget {
   }
 }
 
-// Dashboard Screen Layout
 class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -42,25 +38,21 @@ class DashboardScreen extends StatelessWidget {
             children: [
               // Top Project Section
               TopProjectCard(),
-
               SizedBox(height: 5),
 
               // All Projects List Section
               ProjectListCard(),
-
               SizedBox(height: 5),
 
-              // Top Creators Section
+              // Top Creators card
               TopCreatorsCard(),
-
               SizedBox(height: 5),
 
-              // Performance Graph Section
+              // Performance Graph card
               PerformanceGraphCard(),
-
               SizedBox(height: 5),
 
-              // Special Events (Birthday/Anniversary) Section
+              // Special Events Birthday & Anniversary card
               SpecialEventsCard(),
             ],
           ),
@@ -72,9 +64,12 @@ class DashboardScreen extends StatelessWidget {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: Color(0xFF2B184D),
-      title: Text('Dashboard', style: TextStyle(color: Colors.white),),
+      title: Text(
+        'Dashboard',
+        style: TextStyle(color: Colors.white),
+      ),
       iconTheme: IconThemeData(
-        color: Colors.white, // Set menu toggle (hamburger) icon color to white
+        color: Colors.white,
       ),
       actions: [
         IconButton(
@@ -83,7 +78,10 @@ class DashboardScreen extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {},
-          icon: Icon(Icons.notifications, color: Colors.grey[400],),
+          icon: Icon(
+            Icons.notifications,
+            color: Colors.grey[400],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
@@ -128,7 +126,7 @@ class DashboardDrawer extends StatelessWidget {
       leading: Icon(icon),
       title: Text(title),
       onTap: () {
-        // Navigation logic or functionality
+        // Navigation logic
       },
     );
   }
@@ -138,26 +136,26 @@ class TopProjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity, // Full width
-      height: 200, // Increase the height as per your requirement
+      width: double.infinity,
+      height: 200,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/background.png'), // Path to the image in assets
-          fit: BoxFit.cover, // Cover the entire container
+          image: AssetImage('assets/images/background.png'),
+          fit: BoxFit.cover,
         ),
-        borderRadius: BorderRadius.circular(12), // Rounded edges for the container
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Card(
-        color: Colors.transparent, // Make the card background transparent
-        elevation: 4, // Keep the card elevation for shadow effect
+        color: Colors.transparent,
+        elevation: 4,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12), // Same curved edges as container
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center, // Vertically center the text
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'Top Rating Project',
@@ -181,7 +179,7 @@ class TopProjectCard extends StatelessWidget {
                 child: Text('Learn More'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF2B184D),
-                  foregroundColor: Colors.white,// Button text color
+                  foregroundColor: Colors.white,
                 ),
               ),
             ],
@@ -192,12 +190,10 @@ class TopProjectCard extends StatelessWidget {
   }
 }
 
-
-// All Projects List Card with Elevated Sub-Widgets
+// All Projects List Section
 class ProjectListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     final List<String> images = [
       'assets/images/project1.png',
       'assets/images/project1.png',
@@ -206,49 +202,54 @@ class ProjectListCard extends StatelessWidget {
 
     return Card(
       color: Color(0xFF2B184D),
-      elevation: 4, // Elevation for the parent card
+      elevation: 4,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12), // Curved edges for the parent card
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0), // Padding for the overall layout
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'All Projects',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18, color: Colors.white
-              ),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.white),
             ),
             SizedBox(height: 16),
-            // List of projects as sub-widgets with elevation
             Column(
               children: List.generate(3, (index) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 5.0),
                   child: Container(
-                    width: double.infinity, // Makes the sub-widget occupy full width
+                    width: double.infinity,
                     child: Card(
                       color: Colors.purple[900],
-                      elevation: 3, // Elevation for sub-widgets (projects)
+                      elevation: 3,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16), // Curved edges for the sub-widgets
+                        borderRadius: BorderRadius.circular(16),
                       ),
                       child: ListTile(
                         leading: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: Image.asset(
-                            images[index], // Path to your image
-                            width: 40, // Similar size to an icon
-                            height: 40, // Similar size to an icon
-                            fit: BoxFit.cover, // Ensures the image covers the container
+                            images[index],
+                            width: 40,
+                            height: 40,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        title: Text('Technology Blockchain', style: TextStyle(color: Colors.white),),
-                        subtitle: Text('Project ${index + 1} · See project details', style: TextStyle(color: Colors.grey[400]),),
-                        trailing: Icon(Icons.edit, color: Colors.white), // Edit icon
+                        title: Text(
+                          'Technology Blockchain',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        subtitle: Text(
+                          'Project ${index + 1} · See project details',
+                          style: TextStyle(color: Colors.grey[400]),
+                        ),
+                        trailing: Icon(Icons.edit, color: Colors.white),
                       ),
                     ),
                   ),
@@ -262,35 +263,46 @@ class ProjectListCard extends StatelessWidget {
   }
 }
 
-// Top Creators Card
+// Top Creators Section
 class TopCreatorsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.9, // Set to 90% of screen width
+      width: MediaQuery.of(context).size.width * 0.9,
       child: Card(
         color: Color(0xFF2B184D),
         child: Padding(
-          padding: const EdgeInsets.all(16.0), // Padding for overall layout
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Top Creators',
-                style: TextStyle(fontSize: 18 ,fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               SizedBox(height: 16),
-              // Subheadings
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     child: Column(
                       children: [
-                        Text('Name', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[400], fontSize: 15)),
-                        SizedBox(height: 8), // Space between heading and content
+                        Text('Name',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[400],
+                                fontSize: 15)),
+                        SizedBox(height: 8),
                         ...List.generate(3, (index) {
-                          return Text('@creator_$index', style: TextStyle(color: Colors.white,),);
+                          return Text(
+                            '@creator_$index',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          );
                         }),
                       ],
                     ),
@@ -298,10 +310,17 @@ class TopCreatorsCard extends StatelessWidget {
                   Expanded(
                     child: Column(
                       children: [
-                        Text('Art Works', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[400], fontSize: 15)),
-                        SizedBox(height: 8), // Space between heading and content
+                        Text('Art Works',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[400],
+                                fontSize: 15)),
+                        SizedBox(height: 8),
                         ...List.generate(3, (index) {
-                          return Text('Project ${index + 1}', style: TextStyle(color: Colors.white),);
+                          return Text(
+                            'Project ${index + 1}',
+                            style: TextStyle(color: Colors.white),
+                          );
                         }),
                       ],
                     ),
@@ -309,10 +328,17 @@ class TopCreatorsCard extends StatelessWidget {
                   Expanded(
                     child: Column(
                       children: [
-                        Text('Rating', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[400], fontSize: 15)),
-                        SizedBox(height: 8), // Space between heading and content
+                        Text('Rating',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[400],
+                                fontSize: 15)),
+                        SizedBox(height: 8),
                         ...List.generate(3, (index) {
-                          return Text('9.${index * 2}', style: TextStyle(color: Colors.white),);
+                          return Text(
+                            '9.${index * 2}',
+                            style: TextStyle(color: Colors.white),
+                          );
                         }),
                       ],
                     ),
@@ -327,7 +353,7 @@ class TopCreatorsCard extends StatelessWidget {
   }
 }
 
-// Performance Graph Card
+// Performance Graph Section
 class PerformanceGraphCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -335,15 +361,16 @@ class PerformanceGraphCard extends StatelessWidget {
       child: Column(
         children: [
           ListTile(
-            title: Text('Overall Performance', style: TextStyle(fontWeight: FontWeight.bold)),
+            title: Text('Overall Performance',
+                style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Container(
-            height: 300, // Fixed height for the graph
-            padding: const EdgeInsets.all(16.0), // Padding around the chart
+            height: 300,
+            padding: const EdgeInsets.all(16.0),
             child: LineChart(
               LineChartData(
-                gridData: FlGridData(show: true), // Display grid lines
-                titlesData: FlTitlesData(show: true), // Display titles on axis
+                gridData: FlGridData(show: true),
+                titlesData: FlTitlesData(show: true),
                 borderData: FlBorderData(
                   show: true,
                   border: Border.all(color: Colors.black, width: 1),
@@ -351,7 +378,7 @@ class PerformanceGraphCard extends StatelessWidget {
                 lineBarsData: [
                   LineChartBarData(
                     spots: [
-                      FlSpot(0, 1), // Data points (x, y)
+                      FlSpot(0, 1),
                       FlSpot(1, 1.5),
                       FlSpot(2, 1.4),
                       FlSpot(3, 3.4),
@@ -359,11 +386,11 @@ class PerformanceGraphCard extends StatelessWidget {
                       FlSpot(5, 2.2),
                       FlSpot(6, 1.8),
                     ],
-                    isCurved: true, // Make the line curved
-                    color: Color(0xFF2B184D), // Line color
-                    barWidth: 3, // Width of the line
+                    isCurved: true,
+                    color: Color(0xFF2B184D),
+                    barWidth: 3,
                     belowBarData: BarAreaData(
-                      show: true, // Show shaded area below the graph line
+                      show: true,
                       color: Colors.purple.withOpacity(0.3),
                     ),
                   ),
@@ -377,7 +404,7 @@ class PerformanceGraphCard extends StatelessWidget {
   }
 }
 
-
+// Special Events Birthday & Anniversary Section
 class SpecialEventsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -387,11 +414,11 @@ class SpecialEventsCard extends StatelessWidget {
           title: 'Today Birthday',
           count: 2,
           peopleImages: [
-            'assets/images/birthday1.jpg', // Image for person 1
-            'assets/images/birthday2.png',  // Image for person 2
-          ], // Pass the images for people having birthdays
+            'assets/images/birthday1.jpg',
+            'assets/images/birthday2.png',
+          ],
         ),
-        SizedBox(height: 16), // Space between cards
+        SizedBox(height: 16),
         EventCard(
           title: 'Anniversary',
           count: 3,
@@ -399,7 +426,7 @@ class SpecialEventsCard extends StatelessWidget {
             'assets/images/anniversary1.jpg',
             'assets/images/anniversary2.jpg',
             'assets/images/birthday3.jpg',
-          ], // Images for people having anniversaries
+          ],
         ),
       ],
     );
@@ -409,24 +436,24 @@ class SpecialEventsCard extends StatelessWidget {
 class EventCard extends StatelessWidget {
   final String title;
   final int count;
-  final List<String> peopleImages; // List of image paths for the people
+  final List<String> peopleImages;
 
-  EventCard({required this.title, required this.count, required this.peopleImages});
+  EventCard(
+      {required this.title, required this.count, required this.peopleImages});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.9, // Full width for mobile screens
+      width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
-        color: Color(0xFF2B184D), // Dark blue background color
+        color: Color(0xFF2B184D),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0), // Inner padding
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Title and emojis/icons row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -448,8 +475,6 @@ class EventCard extends StatelessWidget {
               ],
             ),
             SizedBox(height: 16),
-
-            // Avatars (using people's images)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: peopleImages.map((imagePath) {
@@ -463,8 +488,6 @@ class EventCard extends StatelessWidget {
               }).toList(),
             ),
             SizedBox(height: 16),
-
-            // Total Count Display
             Text(
               'Total: $count',
               style: TextStyle(
@@ -474,12 +497,10 @@ class EventCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-
-            // Button for Wishing
             ElevatedButton.icon(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple, // Button color
+                backgroundColor: Colors.purple,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
